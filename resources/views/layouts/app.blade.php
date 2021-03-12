@@ -12,13 +12,14 @@
 
     <!-- style -->
     <link rel="stylesheet" href=" {{ mix('css/app.css') }}">
+    <!-- <link rel="stylesheet" href="css/app.css"> -->
 </head>
 
 <body>
     <div id="app" class="{{ route_class() }}-page">
         @include('layouts.header')
         <div class="container">
-            @include('shared._messages')
+            @include('shared.messages')
             @yield('content')
 
         </div>
