@@ -55,12 +55,21 @@ body {
         padding-left: 15px;
 
         p {
-        margin: 19px 0;
-        color: #c1c1c1;
+            margin: 19px 0;
+            color: #c1c1c1;
 
-        a {
-            color: inherit;
+            a {
+                color: inherit;
+            }
         }
-        }
+    }
+}
+
+.register-page {
+    img.captcha {
+        cursor: pointer;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 3px;
     }
 }
