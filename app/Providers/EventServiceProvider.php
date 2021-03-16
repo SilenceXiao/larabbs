@@ -22,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\EmailVerified::class,
         ],
         PasswordReset::class =>[
-            \App\Listeners\ResetsPassword::class,
+            ResetPassword::class,
         ],
     ];
 

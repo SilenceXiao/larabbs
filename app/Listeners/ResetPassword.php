@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Password;
 
-class ResetsPassword
+class ResetPassword
 {
     /**
      * Create the event listener.
