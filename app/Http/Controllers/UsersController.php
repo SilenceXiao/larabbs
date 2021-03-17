@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
@@ -20,8 +21,10 @@ class UsersController extends Controller
     }
 
     //个人信息更新提交
-    public function update(Request $requset, User $user){
-        return view('users.edit',compact('user'));
+    public function update(UserRequest $request, User $user){
+        dd($request->avatar);
+        $user->update($request->all());
+        return redirect()->route('users.show',$user)->with('success','个人资料更新成功');
     }
 
     
