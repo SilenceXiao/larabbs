@@ -44,4 +44,26 @@
         </div>
     </div>
 
+    <!-- <div>
+        <input type="file" name="file" onchange="showPreview(this)" />
+        <img id="portrait" src="" style="display:none;" />
+    </div>
+
+    <script type="text/javascript">
+        function showPreview(source) {
+        var file = source.files[0];
+        if(window.FileReader) {
+            var fr = new FileReader();
+            console.log(fr);
+            var portrait = document.getElementById('portrait');
+            fr.onloadend = function(e) {
+                portrait.src = e.target.result;
+            };
+            fr.readAsDataURL(file);
+            portrait.style.display = 'block';
+        }
+        }
+    </script>   -->
+
 @stop
+
