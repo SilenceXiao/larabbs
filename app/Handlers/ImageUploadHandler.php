@@ -42,11 +42,12 @@ class ImageUploadHandler
 
         return [
             // 'path' => config('app.url') . "/$file_folder/$file_name"
-            'path' => "$file_folder/$file_name"
+            'path' => "/$file_folder/$file_name"
         ];
     }
 
 
+    //裁剪图片
     public function reduceSize($file_path,$max_width){
         $image = Image::make($file_path);
         $image->resize($max_width,null,function($constraint){

@@ -47,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function getAvatarAttribute($value)
     {
         if (empty($value)) {
-            return 'images/header.gif';
+            return '/images/header.gif';
         }
         return $value;
     }
