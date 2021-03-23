@@ -6,6 +6,7 @@
   <div class="col-md-10 offset-md-1">
     <div class="card ">
       <div class="card-header">
+      {{dd($topic)}}
         <h1>Topic / Show #{{ $topic->id }}</h1>
       </div>
 
