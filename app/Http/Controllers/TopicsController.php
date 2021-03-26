@@ -34,6 +34,7 @@ class TopicsController extends Controller
 	{
 		$topic = Topic::create($request->all());
 		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+		
 	}
 
 	public function edit(Topic $topic)
