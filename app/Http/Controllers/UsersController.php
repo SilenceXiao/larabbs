@@ -34,7 +34,6 @@ class UsersController extends Controller
         if($request->avatar){
             $result = $images->save($request->avatar,'avatar',$user->id,416);
             if($result){
-                
                 $data['avatar'] = $result['path'];
             }
         }
