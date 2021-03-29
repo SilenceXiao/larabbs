@@ -54,6 +54,13 @@
             </li>
             @endguest -->
             @if(Auth::check())
+            <!-- 新建话题 -->
+            <li class="nav-item">
+                <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('topics.create') }}">
+                <i class="fa fa-plus"></i>
+                </a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="{{ config('app.url').Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="img-responsive img-circle" width="30px" height="30px">
