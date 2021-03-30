@@ -26,8 +26,12 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
-    public function show(Topic $topic)
-    {
+    public function show(Request $request, Topic $topic)
+    {	
+		// URL 矫正
+		if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+            return redirect($topic->link(), 301);
+        }
         return view('topics.show', compact('topic'));
     }
 
@@ -44,7 +48,7 @@ class TopicsController extends Controller
 		$topic->fill($request->all());
 		$topic->user_id = Auth::id();
 		$topic->save();
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+		return redirect()->to($topic->link())->with('message', 'Created successfully.');
 	}
 
 	public function edit(Topic $topic)
@@ -59,7 +63,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->to($topic->link())->with('message', 'Updated successfully.');
 	}
 
 	public function destroy(Topic $topic)

@@ -51,7 +51,10 @@ Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 
 //话题
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+
 //话题图片上传
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 
