@@ -36,7 +36,8 @@ class TopicObserver
     }
 
     public function saved(Topic $topic){
-        if(!$topic->slug) {
+        //isDirty() 判断属性是否修改
+        if(!$topic->slug || $topic->isDirty('title')) {
             // 推送任务到队列
             dispatch(new TranslateSlug($topic));
         }
