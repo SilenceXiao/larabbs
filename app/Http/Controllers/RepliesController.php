@@ -6,6 +6,7 @@ use App\Models\Reply;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReplyRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RepliesController extends Controller
 {
@@ -14,26 +15,16 @@ class RepliesController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index()
-	{
-		$replies = Reply::paginate();
-		return view('replies.index', compact('replies'));
-	}
+	
 
-    public function show(Reply $reply)
-    {
-        return view('replies.show', compact('reply'));
-    }
+	public function store(ReplyRequest $request,Reply $reply)
+	{	
 
-	public function create(Reply $reply)
-	{
-		return view('replies.create_and_edit', compact('reply'));
-	}
-
-	public function store(ReplyRequest $request)
-	{
-		$reply = Reply::create($request->all());
-		return redirect()->route('replies.show', $reply->id)->with('message', 'Created successfully.');
+		$reply->content = $request->content;
+		$reply->topic_id = $request->topic_id;
+		$reply->user_id = Auth::id();
+		$reply->save();
+		return redirect()->to($reply->topic->link())->with('message', '评论成功.');
 	}
 
 	public function edit(Reply $reply)
@@ -42,19 +33,12 @@ class RepliesController extends Controller
 		return view('replies.create_and_edit', compact('reply'));
 	}
 
-	public function update(ReplyRequest $request, Reply $reply)
-	{
-		$this->authorize('update', $reply);
-		$reply->update($request->all());
-
-		return redirect()->route('replies.show', $reply->id)->with('message', 'Updated successfully.');
-	}
-
+	
 	public function destroy(Reply $reply)
 	{
 		$this->authorize('destroy', $reply);
 		$reply->delete();
 
-		return redirect()->route('replies.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('replies.index')->with('success', '删除成功.');
 	}
 }
